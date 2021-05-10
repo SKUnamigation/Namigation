@@ -31,7 +31,7 @@ export default function WelcomePage() {
     maxPredictions = model.getTotalClasses();
 
     const flip = true; 
-    webcam = new tmImage.Webcam(200, 200, flip);
+    webcam = new tmImage.Webcam(500, 500, flip);
     
     
   

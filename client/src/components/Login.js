@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Predict from './Predict';
 import '../App.css';
-import Header from './Header';
-import Footer from './Footer';
+import Header from './layout/Header';
+import Footer from './layout/Footer';
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 
 export default class Login extends Component {
@@ -11,12 +11,14 @@ export default class Login extends Component {
         this.state = {
             userNum: "",
             name: "",
-            isLogin: false,
+            isLogin: true,
+            // isLogin: false,
             delay: 100,
             data: 'No result',
             screen:"notfull",
             isQR : null,
             LoginTime:0,
+            isWrong:0,
         }
         this.GetVoiceValue = this.GetVoiceValue.bind(this);   
     }
@@ -40,7 +42,21 @@ export default class Login extends Component {
                             userNum: json[0].usernum,
                             name: json[0].name,
                             isLogin: true });}
-                else { alert("아이디 혹은 비밀번호를 확인하세요") }});
+                else {
+                    this.setState(
+                        {
+                            isWrong:false,
+                        }
+                    )
+                    if(this.state.isWrong===false){
+                    // alert("아이디 혹은 비밀번호를 확인하세요")
+                    this.setState(
+                        {
+                            isWrong:0
+                        }
+                    )
+                }
+                }});
     }
 
     handleuserNum = e => {this.setState({ userNum: e.target.value})}
@@ -86,7 +102,7 @@ export default class Login extends Component {
             </div>
             </form></div>) 
             :           ///로그인이 되었다면 Predict 화면 
-            (<div><Predict name={this.state.name} userNum={this.state.userNum} isLogin={this.state.isLogin}></Predict></div>)}</div><Footer /></div>
+            (<div><Predict name={this.state.name} userNum={this.state.userNum} isLogin={this.state.isLogin}></Predict></div>)}</div></div>
             </>
         )
     }

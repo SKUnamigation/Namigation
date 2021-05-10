@@ -3,7 +3,7 @@ import React from 'react'
 const Header = () => {
     return (
         <div className="Header">
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav id="Navbar" className="navbar navbar-expand-lg navbar-dark bg-black">
   <a className="navbar-brand" href="#"><img src="https://namigation.s3.ap-northeast-2.amazonaws.com/web/mark.jpg" width="35px"></img></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>

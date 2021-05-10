@@ -126,7 +126,7 @@ export default class Predict extends Component {
                     this.props.isLogin ? (
                         <div className="Predict-form">
                             <h1>{this.props.isLogin}</h1>
-                            {this.state.high === "" ? (<div id="LoadingMessage"></div>) : (<div></div>)}
+                            {this.state.high === "" ? (<div id="spinner"></div>) : (<div></div>)}
                             <div><WelcomePage GetTeachValue={this.GetTeachValue} /></div>
                             <form onSubmit={this.handleFormPredict}>
                                 <input id="HighClass" type="text" name="high" value={"고위험 : " + this.state.high * 100} onChange={this.handleValueChange} placeholder="High"></input>
