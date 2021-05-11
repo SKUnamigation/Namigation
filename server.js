@@ -84,7 +84,7 @@ app.get('/api/haha/:userNum', (req, res) => {
 				console.log(req.params.userNum)
 				res.send(rows);
 			} catch (error) {
-				console.log("!!!!!!오류입니다.")
+				console.log("오류입니다.")
 			}
 		});
 });
