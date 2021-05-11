@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { post } from 'axios';
+import { Route, Link } from 'react-router-dom';
 import Table from './Table1'
 import '../App.css';
 import WelcomePage from './WelcomePage-motion';
@@ -126,16 +127,19 @@ export default class Predict extends Component {
                     this.props.isLogin ? (
                         <div className="Predict-form">
                             <h1>{this.props.isLogin}</h1>
-                            {this.state.high === "" ? (<div id="spinner"></div>) : (<div></div>)}
+                            {this.state.high === "" ? (<div id="outspinner">Loading...<hr/><hr/><div id="spinner"></div><hr/><hr/></div>) : (<div></div>)}
                             <div><WelcomePage GetTeachValue={this.GetTeachValue} /></div>
+                            <hr/><hr/>
                             <form onSubmit={this.handleFormPredict}>
-                                <input id="HighClass" type="text" name="high" value={"고위험 : " + this.state.high * 100} onChange={this.handleValueChange} placeholder="High"></input>
-                                <input type="text" id="MiddleClass" name="middle" value={"위험 : " + this.state.middle * 100} onChange={this.handleValueChange} placeholder="Middle"></input>
-                                <input type="text" id="LowClass" name="low" value={"경고 : " + this.state.low * 100} onChange={this.handleValueChange} placeholder="Low"></input>
-                                <input type="text" id="GoodClass" name="good" value={"좋음 : " + this.state.good * 100} onChange={this.handleValueChange} placeholder="Good"></input>
+                                <input id="HighClass" type="text" name="high" value={"고위험 : " + this.state.high * 100} onChange={this.handleValueChange} placeholder="High" maxLength='2'></input>
+                                <input type="text" id="MiddleClass" name="middle" value={"위험 : " + this.state.middle * 100} onChange={this.handleValueChange} placeholder="Middle" maxLength='2'></input>
+                                <br></br><input type="text" id="LowClass" name="low" value={"경고 : " + this.state.low * 100} onChange={this.handleValueChange} placeholder="Low" maxLength='2'></input>
+                                <input type="text" id="GoodClass" name="good" value={"좋음 : " + this.state.good * 100} onChange={this.handleValueChange} placeholder="Good" maxLength='2'></input>
                                 <input type="hidden" value={this.props.name} ></input>
-                                <button type="submit">제출</button>
+                                <button id="submitButton" type="submit">Submit</button>
                             </form>
+                            <br></br>
+                            {/* <Link userNum={this.state.userNum} to="/result">소개</Link> */}
                             {/* <button type="text" onClick={function(){
                             this.props.isLogin = false
                         }}>이전으로</button>  이거 해결하기*/}
