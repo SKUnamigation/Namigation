@@ -11,8 +11,8 @@ export default class Login extends Component {
         this.state = {
             userNum: "",
             name: "",
-            isLogin: true,
-            // isLogin: false,
+            // isLogin: true,
+            isLogin: false,
             delay: 100,
             data: 'No result',
             screen:"notfull",

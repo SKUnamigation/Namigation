@@ -4,7 +4,7 @@ const Result = () => {
 
     return (
         <div>
-           {Result.defaultProps.name}
+           {this.state.name}
         </div>
     )
 }

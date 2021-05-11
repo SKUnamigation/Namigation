@@ -5,6 +5,7 @@ import Table from './Table1'
 import '../App.css';
 import WelcomePage from './WelcomePage-motion';
 import html2canvas from 'html2canvas';
+import { withRouter } from 'react-router-dom';
 import $ from 'jquery';
 
 export default class Predict extends Component {
@@ -107,10 +108,6 @@ export default class Predict extends Component {
 
     //////삭제///////
 
-
-
-
-
     GetTeachValue = (data1, data2, data3, data4) => {
         this.setState({
             high: data1,
@@ -136,6 +133,7 @@ export default class Predict extends Component {
                                 <br></br><input type="text" id="LowClass" name="low" value={"경고 : " + this.state.low * 100} onChange={this.handleValueChange} placeholder="Low" maxLength='2'></input>
                                 <input type="text" id="GoodClass" name="good" value={"좋음 : " + this.state.good * 100} onChange={this.handleValueChange} placeholder="Good" maxLength='2'></input>
                                 <input type="hidden" value={this.props.name} ></input>
+                                <Link to={{ pathname: '/result', state: { name: 'HELLO MY NAME IS BEOMKI'} }}>My route</Link>
                                 <button id="submitButton" type="submit">Submit</button>
                             </form>
                             <br></br>
