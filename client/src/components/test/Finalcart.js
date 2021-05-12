@@ -8,7 +8,7 @@ function FinalCart() {
     return (
         <div>
             <h3>최종 장바구니 화면입니다.</h3>
-            <div>총 금 액 : {sum.state.sum}</div>
+            <div>총 금 액 : {sum.state.high}</div>
             <br />
             <hr />
             <div><button>결제하기</button></div>
