@@ -3,10 +3,8 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
-
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
-
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -27,19 +25,16 @@ connection.connect();
 const multer = require('multer');
 const { query, request } = require('express');
 const upload = multer({ dest: './upload' })
-
 app.post('/api/result/:userNum', (req, res) => {
 	let sql = "SELECT * FROM m_Tcheck WHERE userNum = ? ";
 	let params = req.params.userNum;
 	connection.query(sql, params,
 		(err, rows, fields) => {
 			res.send(rows);
-			console.log("시작빼액!")
 			console.log(err)
 			console.log(json.stringify(rows))
-			console.log("시작빼액!")
-		})
 
+		})
 }
 );
 
@@ -60,19 +55,12 @@ app.get('/hello', (req, res) => {
 	res.send("안녕하세요 서버가 정상적으로 작동하고 있습니다.");
 });
 
-
-
-
-
-
 app.post('/api/result', (req, res) => {
 	let sql = "SELECT * FROM m_Tcheck WHERE userNum = ? ";
 	let params = req.body.userNum;
 	connection.query(sql, params,
 		(err, rows, fields) => {
 			res.send(rows);
-			console.log(req.body.userNum + "헬로우 이범기 할라할라할라라라하라라")
-			// console.log(rows)
 		})
 });
 
@@ -98,20 +86,18 @@ app.get('/api/login', (req, res) => {
 			res.send(rows);
 			console.log(req.body)
 			console.log(err)
-			console.log("로그인1")
 		})
 });
 
 app.post('/api/login', (req, res) => {
 	let sql = "SELECT * FROM  m_user INNER JOIN m_Tcheck WHERE m_user.userNum=? && m_Tcheck.userNum = ? ";
 	let userNum = req.body.userNum;
-	console.log(userNum)
 	let params = [userNum, userNum]
 	connection.query(sql, params,
 		(err, rows, fields) => {
 			try {
 				res.send(rows);
-				console.log("로그인2")
+				console.log(userNum+"로그인")
 			} catch {
 				res.json(
 					{ userNum: "!!!" }
@@ -126,11 +112,6 @@ app.post('/api/predict', upload.single('image'), (req, res) => {
 
 	console.log(request.body)
 	let sql = "insert into m_Tcheck values (null,?,?,?,?,?,'https://placeimg.com/64/64/summer',NOW())";
-	// let image ='/image/' + req.file.filename;	
-	// let userNum =req.body.userNum;
-	// let userNum =1;
-	// let distance = 1;
-	// let depth = 1;
 	let userNum = req.body.userNum;
 	let high = req.body.high;
 	let middle = req.body.middle;

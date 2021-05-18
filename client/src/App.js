@@ -97,7 +97,7 @@ class App extends Component{
      </div>
       {/* <Login></Login> */}
      
-      <BrowserRouter>
+    <BrowserRouter>
     <Switch>
     <Route exact path="/" component={Login}/>
      <Route path="/predict" component={Predict}/>

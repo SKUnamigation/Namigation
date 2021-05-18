@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Result2 = () => {
+const Result2 = (props) => {
     return (
         <div>
-            안녕하세요
+
         </div>
     )
 }

@@ -7,7 +7,7 @@ import WelcomePage from './WelcomePage-motion';
 import html2canvas from 'html2canvas';
 import { withRouter } from 'react-router-dom';
 import $ from 'jquery';
-import { Result } from 'postcss';
+import Result from '../components/Result'
 
 export default class Predict extends Component {
     static defaultProps = {
@@ -59,7 +59,9 @@ export default class Predict extends Component {
 
 
     downImg() {
-        console.log("이거 했다.")
+        const filename = this.state.userNum;
+        const date = new Date();
+        console.log(`${date.getDate()+1}`)
         html2canvas($("#WebCam")[0]).then(function (canvas) {
             var myImage = canvas.toDataURL();
             var link = document.createElement("a")
@@ -135,15 +137,15 @@ export default class Predict extends Component {
                             <hr/><hr/>
                             <form onSubmit={this.handleFormPredict}>
                                 <input id="HighClass" type="text" name="high" value={"고위험 : " + this.state.high * 100} onChange={this.handleValueChange} placeholder="High" maxLength='2'></input>
-                                <input type="text" id="MiddleClass" name="middle" value={"위험 : " + this.state.middle * 100} onChange={this.handleValueChange} placeholder="Middle" maxLength='2'></input>
-                                <br></br><input type="text" id="LowClass" name="low" value={"경고 : " + this.state.low * 100} onChange={this.handleValueChange} placeholder="Low" maxLength='2'></input>
-                                <input type="text" id="GoodClass" name="good" value={"좋음 : " + this.state.good * 100} onChange={this.handleValueChange} placeholder="Good" maxLength='2'></input>
+                                <input type="text" id="MiddleClass" name="middle" value={"위   험 : " + this.state.middle * 100} onChange={this.handleValueChange} placeholder="Middle" maxLength='2'></input>
+                                <br></br><input type="text" id="LowClass" name="low" value={"경   고 : " + this.state.low * 100} onChange={this.handleValueChange} placeholder="Low" maxLength='2'></input>
+                                <input type="text" id="GoodClass" name="good" value={"좋   음 : " + this.state.good * 100} onChange={this.handleValueChange} placeholder="Good" maxLength='2'></input>
                                 <input type="hidden" value={this.props.name} ></input>
                                 <button id="submitButton" type="submit">Submit</button>
                             </form>
-                            <br></br>
-                        </div>) :
-                        (<div><Result high={this.state.high} middle ={this.state.middle} low ={this.state.low} good={this.state.good}></Result>~</div>)
+                            <Result high={this.state.high} middle={this.state.middle} low={this.state.low} good={this.state.good}></Result>
+                        </div>) :(<div></div>)
+                        // (<div><Result high={this.state.high} middle ={this.state.middle} low ={this.state.low} good={this.state.good}></Result>~</div>)
                 }
             </div>
         )

@@ -78,14 +78,16 @@ export default class Login extends Component {
             <body scroll="no"></body>
                 <Header />
                 <div className="Content">
-                    <div className="LoginPage">
+                    <div className="LoginPage" style={
+                    {
+                        textAlign:"center"
+                    }
+                }>
                     <button id="FullScreenButton"></button>
                         {
                             this.state.isLogin === false ? (
                                 <div className="Login-form">
                                     <form className="LoginForm" onSubmit={this.handleLogin}>
-                                        <div id="title">Namigation</div>
-                                        <br></br>
             <BarcodeScannerComponent width={500} height={500}
               onUpdate={(err, result) => {
                 if (result) {
@@ -97,7 +99,7 @@ export default class Login extends Component {
               }}
             />
                           
-             <div><input id="LoginInput" type="text" value={this.state.userNum} onChange={this.handleuserNum.bind(this)} placeholder="제공받은 유저키를 입력해주세요"></input>
+             <div><input id="LoginInput" type="text" value={this.state.userNum} onChange={this.handleuserNum.bind(this)} placeholder="QR CODE"></input>
              <button type="hidden" class="btn btn-primary" id="btnLogin" type="submit">1</button>
             </div>
             </form></div>) 
