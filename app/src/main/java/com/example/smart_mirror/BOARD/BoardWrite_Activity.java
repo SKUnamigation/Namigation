@@ -28,6 +28,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.mobile.client.AWSMobileClient;
@@ -40,6 +43,7 @@ import com.amazonaws.util.IOUtils;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.smart_mirror.HOME.Board_Fragment;
 import com.example.smart_mirror.MYPAGE.MyPage_Request;
 import com.example.smart_mirror.R;
 import com.gun0912.tedpermission.PermissionListener;
@@ -63,9 +67,9 @@ import java.util.Date;
 public class BoardWrite_Activity extends AppCompatActivity {
     private static final String TAG = "SUNGJAE";
 
-    private final String BUCKET = "namigation";
-    private final String KEY = "AKIAXTGXIFSMZ2YEUKZO";
-    private final String SECRET = "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";
+    private final String BUCKET = "";
+    private final String KEY = "";
+    private final String SECRET = "";
 
     private AmazonS3Client s3Client;
     private BasicAWSCredentials credentials;
@@ -148,7 +152,7 @@ public class BoardWrite_Activity extends AppCompatActivity {
                 Title = et_Title.getText().toString();
                 Content = et_Content.getText().toString();
 
-                if (Title.isEmpty() && Content.isEmpty()) {
+                if (Title.isEmpty() || Content.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "제목 및 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 } else if (imageFileName != null) {
                     /**
@@ -173,7 +177,7 @@ public class BoardWrite_Activity extends AppCompatActivity {
 
                     uploadFile();
 
-                    Intent intent = new Intent(BoardWrite_Activity.this, FreeBoard_Activity.class);
+                    Intent intent = new Intent(BoardWrite_Activity.this, Board_Fragment.class);
 
                     // 글쓰기 완료하고 글 목록 페이지에서 다시 글쓰기 버튼 누르면 이 전 글이 남아있어서 null로 설정해줌.
                     et_Title.setText(null);
@@ -203,13 +207,15 @@ public class BoardWrite_Activity extends AppCompatActivity {
                     RequestQueue queue = Volley.newRequestQueue(BoardWrite_Activity.this);
                     queue.add(boardWirte_request);
 
-                    Intent intent = new Intent(BoardWrite_Activity.this, FreeBoard_Activity.class);
+//                    Intent intent = new Intent(BoardWrite_Activity.this, Board_Fragment.class);
 
                     // 글쓰기 완료하고 글 목록 페이지에서 다시 글쓰기 버튼 누르면 이 전 글이 남아있어서 null로 설정해줌.
                     et_Title.setText(null);
                     et_Content.setText(null);
 
-                    startActivity(intent);
+//                    startActivity(intent);
+
+                    finish();
                 }
             }
         });
@@ -252,6 +258,14 @@ public class BoardWrite_Activity extends AppCompatActivity {
                 dlg.show();
             }
         });
+    }
+
+    // 프레그 먼트로 이동
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_Fragment, fragment);
+        fragmentTransaction.commit();
     }
 
     /**
@@ -386,8 +400,6 @@ public class BoardWrite_Activity extends AppCompatActivity {
 
         BitmapToString(originalBm);
 
-        // TODO : takePhoto할 때 storagePath를 정해줄 것이 아니라
-
         storagePath = tempFile.getAbsolutePath();
 
 //        originalBm = rotateImage(originalBm, 90);
@@ -420,6 +432,9 @@ public class BoardWrite_Activity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 이미지 업로드
+     */
     private void uploadFile() {
 
         if (photoUri != null) {

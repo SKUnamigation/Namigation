@@ -1,6 +1,7 @@
 package com.example.smart_mirror.HOME;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,23 +15,30 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.smart_mirror.BOARD.FreeBoard_Activity;
+import com.example.smart_mirror.FragTabLayout.HairLoss_Information;
+import com.example.smart_mirror.Inconvenience_Sending;
 import com.example.smart_mirror.RESULT.HairLoss_Result;
 import com.example.smart_mirror.MYPAGE.MyPage_Activity;
 import com.example.smart_mirror.MAP.Maps_HairLoss_Clinic_Activity;
 import com.example.smart_mirror.R;
+import com.example.smart_mirror.RESULT.Result_Diary;
 import com.example.smart_mirror.RESULT.Smile_Activity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 public class Home_Fragment extends Fragment {
     ViewGroup viewGroup;
 
     String id;
 
-    Button Hair_Loss;
-    Button Smile;
-    Button Clinic;
-    Button FreeBoard;
-    Button MyPage;
+//    Button Hair_Loss;
+//    Button Smile;
+//    Button Clinic;
+//    Button FreeBoard;
+//    Button MyPage;
+
+    RoundedImageView Information, Clinic, Declare;
+    Button Result, CreateQR;
 
     ImageView iv_Img1;
     ImageView iv_Img2;
@@ -53,11 +61,18 @@ public class Home_Fragment extends Fragment {
         iv_Img2 = (ImageView) viewGroup.findViewById(R.id.iv_img2);
         iv_Img3 = (ImageView) viewGroup.findViewById(R.id.iv_img3);
 
-        Hair_Loss = (Button) viewGroup.findViewById(R.id.HairLoss);
-        Smile = (Button) viewGroup.findViewById(R.id.Smile);
-        Clinic = (Button) viewGroup.findViewById(R.id.Hospital);
-        FreeBoard = (Button) viewGroup.findViewById(R.id.freeBoard);
-        MyPage = (Button) viewGroup.findViewById(R.id.Home_MyPage);
+//        Hair_Loss = (Button) viewGroup.findViewById(R.id.HairLoss);
+//        Smile = (Button) viewGroup.findViewById(R.id.Smile);
+//        Clinic = (Button) viewGroup.findViewById(R.id.Hospital);
+//        FreeBoard = (Button) viewGroup.findViewById(R.id.freeBoard);
+//        MyPage = (Button) viewGroup.findViewById(R.id.Home_MyPage);
+
+        Information = (RoundedImageView) viewGroup.findViewById(R.id.Information);
+        Clinic = (RoundedImageView) viewGroup.findViewById(R.id.Clinic);
+        Declare = (RoundedImageView) viewGroup.findViewById(R.id.Diary);
+        Result = (Button) viewGroup.findViewById(R.id.result_Btn);
+        CreateQR = (Button) viewGroup.findViewById(R.id.CreateQR_Btn);
+
 
         viewFlipper.setAutoStart(true);
         viewFlipper.setFlipInterval(3000);
@@ -68,43 +83,95 @@ public class Home_Fragment extends Fragment {
 
 
         // 홈 화면에서 각 버튼을 클릭했을 때의 동작을 작성. -> 액티비티 이동
-        Hair_Loss.setOnClickListener(new View.OnClickListener() {
+//        Hair_Loss.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), HairLoss_Result.class);
+//                startActivity(intent);
+//            }
+//        });
+//        Smile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), Smile_Activity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        /**
+         * QR 코드 액티비티
+         */
+        CreateQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HairLoss_Result.class);
+                Intent intent = new Intent(getActivity(), CreateQR.class);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });
-        Smile.setOnClickListener(new View.OnClickListener() {
+
+        /**
+         * 탈모 정보 제공 액티비티
+         */
+        Information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Smile_Activity.class);
+                Intent intent = new Intent(getActivity(), HairLoss_Information.class);
                 startActivity(intent);
             }
         });
+
+        /**
+         * 주변 클리닉 액티비티 (구글맵)
+         */
         Clinic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Maps_HairLoss_Clinic_Activity.class);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.co.kr/maps/search/%ED%83%88%EB%AA%A8+%ED%81%B4%EB%A6%AC%EB%8B%89"));
                 startActivity(intent);
             }
         });
-        FreeBoard.setOnClickListener(new View.OnClickListener() {
+
+        /**
+         * 불편사항 신고 접수 액티비티
+         */
+        Declare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FreeBoard_Activity.class);
-                intent.putExtra("id", id);
+                Intent intent = new Intent(getActivity(), Inconvenience_Sending.class);
                 startActivity(intent);
             }
         });
-        MyPage.setOnClickListener(new View.OnClickListener() {
+
+        /**
+         * 결과 데이터 액티비티
+         */
+        Result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MyPage_Activity.class);
+                Intent intent = new Intent(getActivity(), Result_Diary.class);
                 intent.putExtra("id", id);
+
                 startActivity(intent);
             }
         });
+
+//        FreeBoard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), FreeBoard_Activity.class);
+//                intent.putExtra("id", id);
+//                startActivity(intent);
+//            }
+//        });
+//        MyPage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), MyPage_Activity.class);
+//                intent.putExtra("id", id);
+//                startActivity(intent);
+//            }
+//        });
 
 
         return viewGroup;

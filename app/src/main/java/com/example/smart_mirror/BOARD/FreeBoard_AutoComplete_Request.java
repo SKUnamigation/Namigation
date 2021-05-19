@@ -11,7 +11,7 @@ public class FreeBoard_AutoComplete_Request extends StringRequest
 {
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://3.34.199.62/AutoComplete.php";
+    final static private String URL = "";
     private Map<String, String> map;
 
 

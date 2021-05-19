@@ -2,6 +2,7 @@ package com.example.smart_mirror.MYPAGE;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -41,6 +43,7 @@ import com.amazonaws.util.IOUtils;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.smart_mirror.BOARD.FreeBoard_Activity;
 import com.example.smart_mirror.R;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -64,9 +67,9 @@ public class MyPage_Modify extends AppCompatActivity {
 
     private static final String TAG = "SUNGJAE";
 
-    private final String BUCKET = "namigation";
-    private final String KEY = "AKIAXTGXIFSMZ2YEUKZO";
-    private final String SECRET = "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";
+    private final String BUCKET = "";
+    private final String KEY = "";
+    private final String SECRET = "";
 
     private AmazonS3Client s3Client;
     private BasicAWSCredentials credentials;
@@ -99,6 +102,8 @@ public class MyPage_Modify extends AppCompatActivity {
     String storagePath;
     File storageDir;
 
+    ProgressDialog progressDialog;
+
     private Boolean isPermission = true;
 
     private static final int PICK_FROM_ALBUM = 1;
@@ -116,7 +121,7 @@ public class MyPage_Modify extends AppCompatActivity {
         Modify_id = (TextView) findViewById(R.id.modify_id);
         Modify_birth = (TextView) findViewById(R.id.modify_birth);
         Modify_gender = (TextView) findViewById(R.id.modify_gender);
-        Modify_FirstID = (TextView) findViewById(R.id.modify_FirstID);
+        Modify_FirstID = (TextView) findViewById(R.id.modify_FirstName);
 
         credentials = new BasicAWSCredentials(KEY, SECRET);
         s3Client = new AmazonS3Client(credentials);
@@ -128,9 +133,9 @@ public class MyPage_Modify extends AppCompatActivity {
 
         tedPermission();
 
-
         iv_Profile.setBackground(new ShapeDrawable(new OvalShape()));
         iv_Profile.setClipToOutline(true);
+
 
         // 프로필 수정 버튼 클릭 시
         iv_Profile.setOnClickListener(new View.OnClickListener() {
@@ -179,22 +184,22 @@ public class MyPage_Modify extends AppCompatActivity {
                     boolean success = jsonObject.getBoolean("success");
 
                     if (success) {
-                        UserNum = jsonObject.getString("usernum");
-                        UserName = jsonObject.getString("name");
-                        UserId = jsonObject.getString("id");
-                        UserBirth = jsonObject.getString("age");
-                        UserGender = jsonObject.getString("gender");
+                        UserNum     = jsonObject.getString("usernum");
+                        UserName    = jsonObject.getString("name");
+                        UserId      = jsonObject.getString("id");
+                        UserBirth   = jsonObject.getString("age");
+                        UserGender  = jsonObject.getString("gender");
 
-                        usernum = Integer.valueOf(UserNum);
+                        usernum     = Integer.valueOf(UserNum);
 
                         checkImageFile();
 
-                        Modify_userNum.setText(UserNum);
-                        Modify_name.setText(UserName);
-                        Modify_id.setText(UserId);
-                        Modify_birth.setText(UserBirth);
-                        Modify_gender.setText(UserGender);
-                        Modify_FirstID.setText(UserId);
+                        Modify_userNum  .setText(UserNum);
+                        Modify_name     .setText(UserName);
+                        Modify_id       .setText(UserId);
+                        Modify_birth    .setText(UserBirth);
+                        Modify_gender   .setText(UserGender);
+                        Modify_FirstID  .setText(UserId);
                     }
 
                 } catch (JSONException e) {
@@ -202,15 +207,16 @@ public class MyPage_Modify extends AppCompatActivity {
                 }
             }
         };
-        MyPage_Request myPage_request = new MyPage_Request(_id, responseListener);
-        RequestQueue queue22 = Volley.newRequestQueue(MyPage_Modify.this);
+        MyPage_Request myPage_request   = new MyPage_Request(_id, responseListener);
+        RequestQueue queue22            = Volley.newRequestQueue(MyPage_Modify.this);
         queue22.add(myPage_request);
 
     }
 
+    /**
+     * 데이터 베이스 내에 이미지 존재 여부 확인
+     */
     private void checkImageFile() {
-        // TODO : MySql에서 최신 파일명을 가져와서 success == true이면 해당 파일명을 통해서
-        //  AWS S3 BUCKET의 이미지를 가져오고 프로필 사진을 지정해준다.
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -331,6 +337,9 @@ public class MyPage_Modify extends AppCompatActivity {
     }
 
 
+    /**
+     * 이미지 회전
+     */
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
@@ -338,6 +347,9 @@ public class MyPage_Modify extends AppCompatActivity {
     }
 
 
+    /**
+     * 이미지 업로드
+     */
     private void uploadFile() {
 
         if (photoUri != null) {
@@ -454,6 +466,7 @@ public class MyPage_Modify extends AppCompatActivity {
                             iv_Profile.setImageBitmap(bmp);
                             iv_Profile.setScaleType(ImageView.ScaleType.FIT_XY);
 
+
                         }
                     }
 
@@ -499,6 +512,7 @@ public class MyPage_Modify extends AppCompatActivity {
                     public void onStateChanged(int id, TransferState state) {
                         if (TransferState.COMPLETED == state) {
                             Toast.makeText(getApplicationContext(), "조회 완료", Toast.LENGTH_SHORT).show();
+
 
                             // 복호화하기
                             Bitmap bmp = BitmapFactory.decodeFile(localFile.getAbsolutePath());

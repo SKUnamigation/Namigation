@@ -55,7 +55,7 @@ import java.util.List;
 public class MyPage_Activity extends AppCompatActivity {
 
     private static final String TAG = "SUNGJAE";
-    private static String IP_ADDRESS = "3.34.199.62";
+    private static String IP_ADDRESS = "";
     private String mJsonString;
 
     private List<String> list;
@@ -77,9 +77,9 @@ public class MyPage_Activity extends AppCompatActivity {
     Intent intent;
     String intent_id;
 
-    private final String BUCKET = "namigation";
-    private final String KEY = "AKIAXTGXIFSMZ2YEUKZO";
-    private final String SECRET = "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";
+    private final String BUCKET = "";
+    private final String KEY = "";
+    private final String SECRET = "";
 
     private AmazonS3Client s3Client;
     private BasicAWSCredentials credentials;
@@ -160,11 +160,11 @@ public class MyPage_Activity extends AppCompatActivity {
         checkImageFile();
     }
 
+    /**
+     * 데이터 베이스 내에 이미지 존재 여부 확인
+     */
     private void checkImageFile(){
 
-
-        // TODO : MySql에서 최신 파일명을 가져와서 success == true이면 해당 파일명을 통해서
-        //  AWS S3 BUCKET의 이미지를 가져오고 프로필 사진을 지정해준다.
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -191,6 +191,9 @@ public class MyPage_Activity extends AppCompatActivity {
         queue11.add(myPage_imageDownload);
     }
 
+    /**
+     * 이미지 다운로드
+     */
     private void downloadFile() {
         // fileUri에 확장자가 붙고, images가 들어간 이미지를 임시 파일로 생성하여 localFile에 담아준다.
         final File localFile;

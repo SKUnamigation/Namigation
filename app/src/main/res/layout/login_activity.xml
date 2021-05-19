@@ -4,27 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E0E7E9"
     >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="g a t i o n"
-        android:textSize="30sp"
-        android:textColor="#354649"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:layout_marginTop="130dp"
-        />
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="N"-->
+<!--        android:textSize="70sp"-->
+<!--        android:textColor="#7868e6"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textStyle="bold"-->
+<!--        android:fontFamily="@font/wemakeprice_bold"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        />-->
 
-    <View
-        android:layout_width="310dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerInParent="true"
-        android:background="#354649" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/namigation_img"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"/>
+
 
 
     <LinearLayout
@@ -39,7 +39,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="310dp"
             android:layout_height="60dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:hint="ID">
 
             <com.google.android.material.textfield.TextInputEditText

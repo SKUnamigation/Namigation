@@ -41,10 +41,10 @@ public class FreeBoard_Adapter extends RecyclerView.Adapter<FreeBoard_Adapter.Cu
     public void onBindViewHolder(@NonNull final FreeBoard_Adapter.CustomViewHolder holder, int position) {
 
         Board item = arrayList.get(position);
-//        holder.recycler_IMG.setImageResource(item.getImage());
-        holder.recycler_Title.setText(item.getTitle());
-        holder.recycler_Title.setTypeface(Typeface.DEFAULT_BOLD);
-        holder.recycler_Content.setText(item.getContent());
+
+        holder.recycler_Title   .setText(item.getTitle());
+        holder.recycler_Title   .setTypeface(Typeface.DEFAULT_BOLD);
+        holder.recycler_Content .setText(item.getContent());
 
 
         // list Click Listener
@@ -54,7 +54,7 @@ public class FreeBoard_Adapter extends RecyclerView.Adapter<FreeBoard_Adapter.Cu
             public void onClick(View v) {
                 // RecyclerView에서 클릭한 항목의 이름을 가져옴.
                 String curName = holder.recycler_Title.getText().toString();
-                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();     //activity가 아니기 때문에, v.getContext()
+//                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();     //activity가 아니기 때문에, v.getContext()
 
                 Intent intent = new Intent(v.getContext(), BoardRead_Activity.class);
 
@@ -65,33 +65,39 @@ public class FreeBoard_Adapter extends RecyclerView.Adapter<FreeBoard_Adapter.Cu
             }
         });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                remove(holder.getAdapterPosition());
-
-                return false;
-            }
-        });
+//        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//
+//                remove(holder.getAdapterPosition());
+//
+//                return false;
+//            }
+//        });
     }
 
+    /**
+     * 항목 카운트
+     */
     @Override
     public int getItemCount() {
         return arrayList.size();
     }
 
-    public void remove(int position) {
-        try {
-            arrayList.remove(position);
-            notifyItemRemoved(position);
+//    public void remove(int position) {
+//        try {
+//            arrayList.remove(position);
+//            notifyItemRemoved(position);
+//
+//        } catch (IndexOutOfBoundsException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-    }
 
-
+    /**
+     * recyclerview에 포함되는 항목 지정
+     */
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
 
@@ -102,7 +108,6 @@ public class FreeBoard_Adapter extends RecyclerView.Adapter<FreeBoard_Adapter.Cu
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-//            recycler_IMG = (ImageView) itemView.findViewById(R.id.recycler_image);
             recycler_Title = (TextView) itemView.findViewById(R.id.recycler_Title);
             recycler_Content = (TextView) itemView.findViewById(R.id.recycler_Content);
 

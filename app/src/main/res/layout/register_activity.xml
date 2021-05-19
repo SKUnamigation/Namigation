@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#E0E7E9">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,19 +14,19 @@
             android:layout_height="wrap_content"
             android:text="회 원 가 입"
             android:textStyle="bold"
-            android:textColor="#354649"
+            android:textColor="#7868e6"
             android:textAlignment="center"
             android:textSize="30sp"
             android:layout_marginTop="20dp"
             />
 
         <View
-            android:layout_width="373dp"
-            android:layout_height="4dp"
+            android:layout_width="330dp"
+            android:layout_height="2dp"
             android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"
             android:layout_centerInParent="true"
-            android:background="#354649"
+            android:background="#7868e6"
             />
 
     </LinearLayout>
@@ -47,14 +46,14 @@
             android:gravity="center">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="280dp"
+                android:layout_width="240dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="5dp"
                 android:hint="아이디를 입력해주세요">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Sign_id"
-                    android:layout_width="300dp"
+                    android:layout_width="240dp"
                     android:layout_height="match_parent"
                     android:textSize="15sp"
                     android:singleLine="true"
@@ -69,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="중복 확인"
-                android:textColor="#464447"
+                android:textColor="#7868e6"
                 android:textSize="15sp"
                 android:background="@drawable/btn_pwck"
                 />
@@ -86,7 +85,7 @@
             android:gravity="center">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="373dp"
+                android:layout_width="330dp"
                 android:layout_height="60dp"
                 android:hint="비밀번호를 입력해주세요">
 
@@ -113,7 +112,7 @@
             android:gravity="center">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="373dp"
+                android:layout_width="330dp"
                 android:layout_height="60dp"
                 android:hint="비밀번호를 다시 입력해주세요">
 
@@ -140,7 +139,7 @@
             android:gravity="center">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="373dp"
+                android:layout_width="330dp"
                 android:layout_height="60dp"
                 android:hint="이름을 입력해주세요">
 
@@ -160,7 +159,7 @@
 
         <Button
             android:id="@+id/Register_Next_Btn"
-            android:layout_width="373dp"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:text="다  음"
             android:textSize="20sp"

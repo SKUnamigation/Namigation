@@ -3,9 +3,14 @@ package com.example.smart_mirror.HOME;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
@@ -38,12 +43,15 @@ public class Home_Activity extends AppCompatActivity {
 
     Home_Fragment home_Fragment;
     MyPage_Fragment myPage_fragment;
-
-
+    Board_Fragment board_fragment;
 
     ViewFlipper viewFlipper;
 
     private Boolean isPermission = true;
+
+    private long BackKeyPressedTime = 0;
+
+    private Toast toast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +68,8 @@ public class Home_Activity extends AppCompatActivity {
         home_Fragment = new Home_Fragment();
         myPage_fragment = new MyPage_Fragment();
 
+        board_fragment = new Board_Fragment();
+
 //        iv_Img1 = (ImageView) findViewById(R.id.iv_img1);
 //        iv_Img2 = (ImageView) findViewById(R.id.iv_img2);
 //        iv_Img3 = (ImageView) findViewById(R.id.iv_img3);
@@ -74,6 +84,7 @@ public class Home_Activity extends AppCompatActivity {
         bundle.putString("id", intent_id);
         home_Fragment.setArguments(bundle);
         myPage_fragment.setArguments(bundle);
+        board_fragment.setArguments(bundle);
 
         // 처음 Home_Activity 들어가자마자 대체되는 화면
         getSupportFragmentManager().beginTransaction().replace(R.id.container_Fragment, home_Fragment).commitAllowingStateLoss();
@@ -84,16 +95,17 @@ public class Home_Activity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_home:
+                    case R.id.action_home:  //홈 바텀 버튼
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_Fragment, home_Fragment).commit();
 
                         return true;
 
-                    case R.id.action_board:
+                    case R.id.action_board: // 게시판 바텀 버튼
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_Fragment, board_fragment).commit();
 
                         return true;
 
-                    case R.id.action_mypage:
+                    case R.id.action_mypage:    // 마이페이지 바텀 버튼
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_Fragment, myPage_fragment).commit();
 
                         return true;
@@ -133,5 +145,33 @@ public class Home_Activity extends AppCompatActivity {
                 .setDeniedMessage(getResources().getString(R.string.permission_1))
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
+    }
+
+    // 뒤로가기 2번 입력 시 앱 종료.
+    @Override
+    public void onBackPressed() {
+        LayoutInflater inflater = getLayoutInflater();
+        View toastDesign = inflater.inflate(R.layout.toast_design_text, (ViewGroup)findViewById(R.id.toast_design_root));
+
+        TextView text = toastDesign.findViewById(R.id.TextView_toast_design);
+        text.setText("뒤로가기 버튼을 한 번 더 누르시면 종료됩니다!");
+
+        if (System.currentTimeMillis() > BackKeyPressedTime + 2500) {
+            BackKeyPressedTime  = System.currentTimeMillis();
+            toast               = new Toast(Home_Activity.this);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setView(toastDesign);
+            toast.show();
+            return;
+        }
+
+        if (System.currentTimeMillis() <= BackKeyPressedTime + 2500) {
+            toast.cancel();
+            toast = Toast.makeText(Home_Activity.this, "이용해주셔서 감사합니다!", Toast.LENGTH_SHORT);
+            toast.show();
+
+            finish();
+        }
+
     }
 }

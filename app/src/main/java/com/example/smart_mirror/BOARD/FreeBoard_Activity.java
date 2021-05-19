@@ -22,6 +22,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.smart_mirror.CustomAnimationDialog;
 import com.example.smart_mirror.R;
 
 import org.json.JSONArray;
@@ -39,7 +40,7 @@ import java.util.List;
 
 public class FreeBoard_Activity extends AppCompatActivity{
 
-    private static String IP_ADDRESS = "3.34.199.62";
+    private static String IP_ADDRESS = "";
     private static String TAG = "phptest";
 
     Button freeBoard_writeBtn;
@@ -52,6 +53,8 @@ public class FreeBoard_Activity extends AppCompatActivity{
     private AutoCompleteTextView autoCompleteTextView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ImageView search_Btn;
+
+    private CustomAnimationDialog customAnimationDialog;
 
     private String mJsonString;
     private String auto_String;
@@ -97,12 +100,6 @@ public class FreeBoard_Activity extends AppCompatActivity{
         });
 
 
-        //TODO : AutoCompleteTextView 기능 구현하기 - CLEAR
-        //TODO : MyPage 사진 접근 - CLEAR
-        //TODO : MyPage 수정 기능 - CLEAR
-        //TODO : Home -> BottomNavigation 기능 구현 -> Fragment
-        //TODO : MISSION START!!
-
         // 작성한 FreeBoard_Adapter를 가져와서 FreeBoard_Adapter에 arrayList를 담아줄 것이다.
         freeBoard_adapter = new FreeBoard_Adapter(arrayList);
 
@@ -116,6 +113,9 @@ public class FreeBoard_Activity extends AppCompatActivity{
 
         task.execute( "http://" + IP_ADDRESS + "/FreeBoardList.php", "");
 
+        /**
+         * 자동 완성
+         */
         ArrayAdapter<String> searchList = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
         autoCompleteTextView.setAdapter(searchList);
 
@@ -230,17 +230,19 @@ public class FreeBoard_Activity extends AppCompatActivity{
         });
     }
 
+    /**
+     * 생명 주기 관련
+     */
     private class GetData extends AsyncTask<String, Void, String> {
 
-        ProgressDialog progressDialog;
         String errorString = null;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(FreeBoard_Activity.this,
-                    "잠시만 기다려주세요...", null, true, true);
+            customAnimationDialog = new CustomAnimationDialog(FreeBoard_Activity.this);
+            customAnimationDialog.show();
         }
 
 
@@ -248,7 +250,7 @@ public class FreeBoard_Activity extends AppCompatActivity{
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            progressDialog.dismiss();
+            customAnimationDialog.dismiss();
             mJsonString = result;
             showResult();
         }
@@ -318,6 +320,9 @@ public class FreeBoard_Activity extends AppCompatActivity{
     }
 
 
+    /**
+     * 결과 출력
+     */
     private void showResult(){
 
         String TAG_JSON="response";

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,11 +31,12 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText idEditText;
     EditText pwEditText;
-    TextView tv_toastMSG;
     Button btnLogin;
     Button btnSign;
 
     String _id, _pw;
+
+    Toast toast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,14 +83,26 @@ public class LoginActivity extends AppCompatActivity {
                                 String Userpw = jsonObject.getString("pw");
                                 String Username = jsonObject.getString("name");
 
+                                if (Userid.length() != 0 || Userpw.length() != 0) {
+                                    Intent intent = new Intent(LoginActivity.this, Home_Activity.class);
+                                    intent.putExtra("id", Userid);
+                                    intent.putExtra("pw", Userpw);
 
+                                    startActivity(intent);
 
-//                                Toast.makeText(getApplicationContext(), "환영합니다. " + Username + "님.", Toast.LENGTH_LONG).show();
+                                    finish();
+                                } else {
+                                    LayoutInflater inflater = getLayoutInflater();
+                                    View toastDesign = inflater.inflate(R.layout.toast_design_text, (ViewGroup)findViewById(R.id.toast_design_root));
 
-                                Intent intent = new Intent(LoginActivity.this, Home_Activity.class);
-                                intent.putExtra("id", Userid);
-                                intent.putExtra("pw", Userpw);
-                                startActivity(intent);
+                                    TextView text = toastDesign.findViewById(R.id.TextView_toast_design);
+                                    text.setText("아이디 및 비밀번호를 입력해주세요.");
+                                    toast               = new Toast(LoginActivity.this);
+                                    toast.setDuration(Toast.LENGTH_SHORT);
+                                    toast.setView(toastDesign);
+                                    toast.show();
+                                }
+
                             } else { // 로그인에 실패한 경우
                                 Toast.makeText(getApplicationContext(), "아이디 및 비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
                                 return;

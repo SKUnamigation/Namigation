@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class BoardWrite_Request extends StringRequest {
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://3.34.199.62/BoardWrite.php";
+    final static private String URL = "";
     private Map<String, String> map;
 
     public BoardWrite_Request(String Title, String Content, String userId, Response.Listener<String> listener) {

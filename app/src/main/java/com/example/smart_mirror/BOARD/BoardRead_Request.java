@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class BoardRead_Request extends StringRequest {
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://3.34.199.62/BoardRead.php";
+    final static private String URL = "";
     private Map<String, String> map;
 
     public BoardRead_Request(String Title, String Content, Response.Listener<String> listener) {
