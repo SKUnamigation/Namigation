@@ -65,7 +65,7 @@ export default class Predict extends Component {
         html2canvas($("#WebCam")[0]).then(function (canvas) {
             var myImage = canvas.toDataURL();
             var link = document.createElement("a")
-            link.download = "촬영한 사진.png";
+            link.download = `${filename}`;
             link.href = myImage;
             document.body.appendChild(link);
             link.click();

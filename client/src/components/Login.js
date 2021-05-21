@@ -100,7 +100,7 @@ export default class Login extends Component {
             />
                           
              <div><input id="LoginInput" type="text" value={this.state.userNum} onChange={this.handleuserNum.bind(this)} placeholder="QR CODE"></input>
-             <button type="hidden" class="btn btn-primary" id="btnLogin" type="submit">1</button>
+             <button type="hidden" className="btn btn-primary" id="btnLogin" type="submit">1</button>
             </div>
             </form></div>) 
             :           ///로그인이 되었다면 Predict 화면 

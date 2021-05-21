@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6000;
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
