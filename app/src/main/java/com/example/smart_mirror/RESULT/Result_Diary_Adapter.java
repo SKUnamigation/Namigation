@@ -163,28 +163,28 @@ public class Result_Diary_Adapter extends RecyclerView.Adapter<Result_Diary_Adap
                 && Good_Grade_Score > Low_Grade_Score
                 && Good_Grade_Score > Middle_Grade_Score) {
 
-            Total_ProgressRate = 0;
+            Total_ProgressRate = 40;
 
-            // 위험 군으로 선정되고 진행률이 0 ~ 20% 사이일 때
+            // 좋음 군으로 선정되고 진행률이 0 ~ 20% 사이일 때
             if (Good_Grade_Score >= 0 && Good_Grade_Score <= 20) {
-                // 총 진행률 0%
-                Total_ProgressRate += 0;
+                // 총 진행률 40%
+                Total_ProgressRate -= 0;
             }
             else if (Good_Grade_Score >= 21 && Good_Grade_Score <= 40) {
-                // 총 진행률 10%
-                Total_ProgressRate += 10;
+                // 총 진행률 30%
+                Total_ProgressRate -= 10;
             }
             else if (Good_Grade_Score >= 41 && Good_Grade_Score <= 60) {
                 // 총 진행률 20%
-                Total_ProgressRate += 20;
+                Total_ProgressRate -= 20;
             }
             else if (Good_Grade_Score >= 61 && Good_Grade_Score <= 80) {
-                // 총 진행률 30%
-                Total_ProgressRate += 30;
+                // 총 진행률 10%
+                Total_ProgressRate -= 30;
             }
             else if (Good_Grade_Score >= 81 && Good_Grade_Score <= 100) {
-                // 총 진행률 40%
-                Total_ProgressRate += 40;
+                // 총 진행률 0%
+                Total_ProgressRate -= 40;
             }
 
             holder.recycler_Grade               .setText("좋음");

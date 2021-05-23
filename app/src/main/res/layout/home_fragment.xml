@@ -22,13 +22,13 @@
             <ViewFlipper
                 android:id="@+id/viewF"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 >
 
                 <ImageView
                     android:id="@+id/iv_img1"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/namigation_ad1" />
 
@@ -36,7 +36,7 @@
                 <ImageView
                     android:id="@+id/iv_img2"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/namigation_ad2" />
 
@@ -44,7 +44,7 @@
                 <ImageView
                     android:id="@+id/iv_img3"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:src="@drawable/hairloss_img3" />
 
@@ -176,7 +176,8 @@
                         android:id="@+id/result_Btn"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:text="결과 보기"/>
+                        android:layout_marginRight="80dp"
+                        android:background="@drawable/result"/>
 
                     <Button
                         android:id="@+id/CreateQR_Btn"
@@ -186,6 +187,28 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="130dp"
+                        android:textStyle="bold"
+                        android:text="결과 보기"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="QR 코드"/>
+
+                </LinearLayout>
             </LinearLayout>
 
 
