@@ -4,13 +4,10 @@ import {withStyles} from '@material-ui/core/styles';
 import Login from './components/Login';
 import 'bootstrap/dist/css/bootstrap.css'
 import { BrowserRouter, Route, Switch, Link  } from 'react-router-dom';
-// import Table1 from './components/Table1';
 import Predict from './components/Predict';
 import Qrcode from './components/Qrcode';
 import Qrcodecl from './components/Qrcodecl';
-import Test from './components/modal/Test'
-import Result from './components/Result'
-import Result1 from './components/Result1'
+import Test from './components/test/test'
 import Finalcart from './components/test/Finalcart';
 import Cart from './components/test/Cart';
 
@@ -20,14 +17,14 @@ import Cart from './components/test/Cart';
 const styles = theme => ({
   root : {
     width : '100%',
-    marginTop: theme.spacing.unit * 3,
+    // marginTop: theme.spacing.unit * 3,
     overflowX:"auto"
   },
     table:{
       minWidth:1080
     },
     progress:{
-      margin : theme.spacing.unit*2
+      // margin : theme.spacing.unit*2
     }
 })
 
@@ -104,8 +101,6 @@ class App extends Component{
      <Route path="/qrcodecl" component={Qrcodecl}/>
      <Route path="/qrcode" component={Qrcode}/>
      <Route path="/Test" component={Test}/>
-     <Route path="/result" component={Result}/>
-     <Route path="/result1" component={Result1}/>
      <Route path="/cart" component={Cart}/>
      <Route path="/finalcart" component={Finalcart}/>
     </Switch>

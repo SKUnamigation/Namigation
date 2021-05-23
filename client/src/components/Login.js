@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Predict from './Predict';
 import '../App.css';
 import Header from './layout/Header';
-import Footer from './layout/Footer';
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 
 export default class Login extends Component {

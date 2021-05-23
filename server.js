@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 5001;
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
@@ -105,6 +105,29 @@ app.post('/api/login', (req, res) => {
 			}
 		})
 });
+
+
+app.post('/hello/insert', upload.single('image'), (req, res) => {
+
+	console.log(request.body)
+	let sql = "insert into m_Tcheck values (null,?,?,?,?,?,'https://placeimg.com/64/64/summer',NOW())";
+	let userNum = '12345';
+	let high = '12345';
+	let middle = '12345';
+	let low = '12345';
+	let good = '12345';
+	let params = [userNum, high, middle, low, good];
+	connection.query(sql, params,
+		(err, rows, fields) => {
+			res.send(rows);
+			console.log(err)
+			console.log(rows)
+		})
+})
+
+
+
+
 
 app.use('/image', express.static('./upload'));
 // app.post('/api/predict'/*,upload.single('image')*/,(req,res)=> 

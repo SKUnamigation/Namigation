@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import ResultTable from './TableBody'
-import { get } from 'axios';
 import '../App.css';
 import Header from './layout/Header';
-import Left from './layout/Left';
 import Footer from './layout/Footer';
 
 export default class Table1 extends Component {
