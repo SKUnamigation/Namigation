@@ -12,7 +12,7 @@ export default function WelcomePage({GetTeachValue}) {
   })
 
   // const URL = "https://teachablemachine.withgoogle.com/models/pg97lEWuB/"  //원래
-  const URL = "https://teachablemachine.withgoogle.com/models/durPR47Po/" //4개 분류
+  const URL = "https://teachablemachine.withgoogle.com/models/ukHIXusf5/" //4개 분류
 
   
   let model;
