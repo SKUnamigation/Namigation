@@ -53,7 +53,7 @@ export default class Predict extends Component {
 
         if (this.state.isOpen===true) {
             console.log("true")
-        //    window.location.href="/"
+           window.location.href="/"
             
         } else if(this.state.isOpen===false) {
             console.log("false")
@@ -180,13 +180,13 @@ export default class Predict extends Component {
 
 
 
-                            <button style={
+                            {/* <button style={
                                 {
                                     width: "10px",
                                     height: "10px",
                                     backgroundColor: "blue"
                                 }
-                            } onClick={this.toggleModal}>Open modal</button>
+                            } onClick={this.toggleModal}>Open modal</button> */}
 
                             <Modal
                                 isOpen={this.state.isOpen}
