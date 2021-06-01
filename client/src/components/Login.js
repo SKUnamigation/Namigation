@@ -29,11 +29,14 @@ export default class Login extends Component {
             method: "POST",
             body: JSON.stringify(this.state),
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             }
         };
         fetch("/api/login", login_info).then(res => {
+            // return JSON.parse(res.json());
             return res.json();
+            
         }).then(json => {
                 if (json[0] != undefined) {
                     window.localStorage.setItem("userInfo", JSON.stringify(json))
