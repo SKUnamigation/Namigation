@@ -2,18 +2,21 @@ const fs = require('fs');
 const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
-
 const port = process.env.PORT || 5001;
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: true }));
-
 const data = fs.readFileSync('./database.json');
 const conf = JSON.parse(data);
 const mysql = require('mysql');
 
+
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
+app.all('/*', function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	next();
+  });
 
 const connection = mysql.createConnection({
 	host: conf.host,

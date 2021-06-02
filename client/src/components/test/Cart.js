@@ -5,6 +5,7 @@ const Cart = () => {
 
     const addpredict = () => {
         console.log("버튼을 눌렀습니다. 이제 값이 들어가야만 합니다.")
+        // const url = 'http://13.125.95.14:5001/hello/insert';
         const url = '/hello/insert';
         const formData = new FormData();
         formData.append('userNum', '1234');

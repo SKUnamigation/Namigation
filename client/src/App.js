@@ -10,6 +10,7 @@ import Qrcodecl from './components/Qrcodecl';
 import Test from './components/test/test'
 import Finalcart from './components/test/Finalcart';
 import Cart from './components/test/Cart';
+import Table1 from './components/Table1';
 
 
 
@@ -103,6 +104,7 @@ class App extends Component{
      <Route path="/Test" component={Test}/>
      <Route path="/cart" component={Cart}/>
      <Route path="/finalcart" component={Finalcart}/>
+     <Route path="/table" component={Table1}/>
     </Switch>
   </BrowserRouter>
   <div>

@@ -5,7 +5,6 @@ import WelcomePage from './WelcomePage-motion';
 import html2canvas from 'html2canvas';
 import $ from 'jquery';
 import Modal from "react-modal";
-
 Modal.setAppElement("#root");
 
 
@@ -94,9 +93,13 @@ export default class Predict extends Component {
         console.log(`${date.getDate() + 1}`)
         html2canvas($("#WebCam")[0]).then(function (canvas) {
             var myImage = canvas.toDataURL();
+            console.log("myImage: "+myImage)
+            console.log("-----------------------------------------------------------------------------------------------------------------")
             var link = document.createElement("a")
             link.download = `${filename}`;
             link.href = myImage;
+            console.log("link : "+link.href)
+            console.log("-----------------------------------------------------------------------------------------------------------------")
             document.body.appendChild(link);
             link.click();
         });
@@ -172,6 +175,10 @@ export default class Predict extends Component {
                                 <br></br><input type="text" id="LowClass" name="low" value={"경   고 : " + this.state.low * 100} onChange={this.handleValueChange} placeholder="Low" maxLength='2'></input>
                                 <input type="text" id="GoodClass" name="good" value={"좋   음 : " + this.state.good * 100} onChange={this.handleValueChange} placeholder="Good" maxLength='2'></input>
                                 <input type="hidden" value={this.props.name} ></input>
+                                <img height="375" width="375" alt="제발"                                
+                                
+                                
+                                />
                                 <button id="submitButton" type="submit">Submit</button>
                             </form>
 
