@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import ResultTable from './TableBody'
 import '../App.css';
-import Header from './layout/Header';
-import Footer from './layout/Footer';
 
 export default class Table1 extends Component {
     constructor(props){
@@ -52,7 +50,6 @@ export default class Table1 extends Component {
     render() {
         return (
           <>
-          <Header></Header>
           {/* <Left></Left> */}
             <div className="Content">
             <table class="table">
@@ -76,7 +73,6 @@ export default class Table1 extends Component {
         } </tablebody>
 
             </div>
-            <Footer></Footer>
             </>
         )
     }

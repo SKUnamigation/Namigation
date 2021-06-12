@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { post } from 'axios';
 import '../App.css';
-import WelcomePage from './WelcomePage-motion';
+import HairPredict from './Hair-predict';
 import html2canvas from 'html2canvas';
 import $ from 'jquery';
 import Modal from "react-modal";
 Modal.setAppElement("#root");
-
 
 export default class Predict extends Component {
     static defaultProps = {
@@ -16,21 +15,17 @@ export default class Predict extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            test: "Test",
             userNum: this.props.userNum,
             high: "",
             middle: "",
             low: "",
             good: "",
             isLogin: null,
-            isResult: null,
             isOpen: false
         }
         this.handleValueChange = this.handleValueChange.bind(this)
         this.addpredict = this.addpredict.bind(this)
     }
-
-
 
     stateRefresh = () => {
         console.log("checkpoin4")
@@ -65,7 +60,7 @@ export default class Predict extends Component {
 
 
 
-    handleFormPredict = (e) => {
+    handleFormPredict = (e) => {  // 측정 버튼 클릭시
         this.downImg()
         e.preventDefault()
         console.log("checkpoint2")
@@ -78,37 +73,34 @@ export default class Predict extends Component {
         this.setState(
             { isOpen: !this.state.isOpen }
         );
-        this.toggleModal()
-    
+        this.toggleModal()  }
 
-        // 
-
-    }
-
-
-
-    downImg() {
+    downImg() {     /// 이미지 다운로드
         const filename = this.state.userNum;
         const date = new Date();
         console.log(`${date.getDate() + 1}`)
         html2canvas($("#WebCam")[0]).then(function (canvas) {
             var myImage = canvas.toDataURL();
             console.log("myImage: "+myImage)
-            console.log("-----------------------------------------------------------------------------------------------------------------")
             var link = document.createElement("a")
             link.download = `${filename}`;
             link.href = myImage;
             console.log("link : "+link.href)
-            console.log("-----------------------------------------------------------------------------------------------------------------")
             document.body.appendChild(link);
             link.click();
         });
-
     }
 
 
 
-
+    GetTeachValue = (data1, data2, data3, data4) => {
+        this.setState({
+            high: data1,
+            middle: data2,
+            low: data3,
+            good: data4,
+        })
+    }
 
     handleValueChange = (e) => {
         console.log("checkpoint1")
@@ -133,79 +125,37 @@ export default class Predict extends Component {
         return post(url, formData, config);
     }
 
+  
 
-
-    //////시작 ////////
-    addresult = () => {
-        const url = '/api/result/:userNum';
-        const formData = new FormData();
-        formData.append('userNum', this.props.userNum);
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        }
-        return post(url, formData, config);
-    }
-
-    //////삭제///////
-
-    GetTeachValue = (data1, data2, data3, data4) => {
-        this.setState({
-            high: data1,
-            middle: data2,
-            low: data3,
-            good: data4,
-        })
-    }
-
-    render() {
-        return (
-            <div className="PredictPage">
-                {
-                    this.props.isLogin ? (
+                        render() {
+                        return (
+                        <div className="PredictPage">
+                        {
+                        this.props.isLogin ? (
                         <div className="Predict-form">
-                            <h1>{this.props.isLogin}</h1>
-                            {this.state.high === "" ? (<div id="outspinner">Loading...<hr /><hr /><div id="spinner"></div><hr /><hr /></div>) : (<div></div>)}
-                            <div><WelcomePage GetTeachValue={this.GetTeachValue} /></div>
-                            <hr /><hr />
-                            <form onSubmit={this.handleFormPredict}>
-                                <input id="HighClass" type="text" name="high" value={"고위험 : " + this.state.high * 100} onChange={this.handleValueChange} placeholder="High" maxLength='2'></input>
-                                <input type="text" id="MiddleClass" name="middle" value={"위   험 : " + this.state.middle * 100} onChange={this.handleValueChange} placeholder="Middle" maxLength='2'></input>
-                                <br></br><input type="text" id="LowClass" name="low" value={"경   고 : " + this.state.low * 100} onChange={this.handleValueChange} placeholder="Low" maxLength='2'></input>
-                                <input type="text" id="GoodClass" name="good" value={"좋   음 : " + this.state.good * 100} onChange={this.handleValueChange} placeholder="Good" maxLength='2'></input>
-                                <input type="hidden" value={this.props.name} ></input>
-                                <img height="375" width="375" alt="제발"                                
-                                
-                                
-                                />
-                                <button id="submitButton" type="submit">Submit</button>
-                            </form>
-
-
-
-
-
-
-                            {/* <button style={
-                                {
-                                    width: "10px",
-                                    height: "10px",
-                                    backgroundColor: "blue"
-                                }
-                            } onClick={this.toggleModal}>Open modal</button> */}
-
-                            <Modal
-                                isOpen={this.state.isOpen}
-                                onRequestClose={this.toggleModal}
-                                contentLabel="My dialog"
-                            >
-                                <div>전송을 완료했습니다!</div><br/>
-                                <div>자세한 내용은 앱을 이용해 주세요</div><br/>
-                                <button onClick={this.toggleModal}>닫기</button>
-                            </Modal>
-                        </div>) : (<div></div>)
-                    // (<div><Result high={this.state.high} middle ={this.state.middle} low ={this.state.low} good={this.state.good}></Result>~</div>)
+                        <h1>{this.props.isLogin}</h1>
+                        {this.state.high === "" ? (<div id="outspinner">Loading...<hr /><hr /><div id="spinner"></div><hr /><hr /></div>) : (<div></div>)}
+                        <div><HairPredict GetTeachValue={this.GetTeachValue} /></div>
+                        <hr /><hr />
+                        <form onSubmit={this.handleFormPredict}>
+                        <input id="HighClass" type="text" name="high" value={"고위험 : " + this.state.high * 100} onChange={this.handleValueChange}  maxLength='2'></input>
+                        <input type="text" id="MiddleClass" name="middle" value={"위   험 : " + this.state.middle * 100} onChange={this.handleValueChange}  maxLength='2'></input>
+                        <br></br><input type="text" id="LowClass" name="low" value={"경   고 : " + this.state.low * 100} onChange={this.handleValueChange}  maxLength='2'></input>
+                        <input type="text" id="GoodClass" name="good" value={"좋   음 : " + this.state.good * 100} onChange={this.handleValueChange} maxLength='2'></input>
+                        <input type="hidden" value={this.props.name} ></input>
+                        <button id="submitButton" type="submit">Submit</button>
+                        </form>
+                    
+                        <Modal
+                            isOpen={this.state.isOpen}
+                            onRequestClose={this.toggleModal}
+                            contentLabel="My dialog"
+                        >
+                            <div>전송을 완료했습니다!</div><br/>
+                            <div>자세한 내용은 앱을 이용해 주세요</div><br/>
+                            <button onClick={this.toggleModal}>닫기</button>
+                        </Modal>
+                    </div>) : (<div></div>)
                 }
             </div>
         )

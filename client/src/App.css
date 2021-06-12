@@ -184,12 +184,12 @@ body {
 }
 
 .ReactModal__Content.ReactModal__Content--after-open{
-  width: 30%;
+  width: 50%;
   background-color: #000000 !important;
   position: relative !important;
   text-align: center;
   top: 30% !important;
-  left: 35% !important;
+  left: 25% !important;
   color:#ffffff !important;
   border: 5px solid #FFFFFF !important;
   font-size: 30px;
@@ -355,7 +355,7 @@ body {
     border: 1px solid #000000;
     text-align: center;
     font-size: 60px;
-    margin-top: 60px;
+    margin-top: 150px;
     font-family: 'wemark', sans-serif;
     
   }

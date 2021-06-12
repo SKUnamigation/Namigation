@@ -12,16 +12,12 @@ export default class Login extends Component {
             name: "",
             // isLogin: true,
             isLogin: false,
-            delay: 100,
-            data: 'No result',
-            screen:"notfull",
             isQR : null,
             LoginTime:0,
             isWrong:0,
         }
-        this.GetVoiceValue = this.GetVoiceValue.bind(this);   
+        // this.GetVoiceValue = this.GetVoiceValue.bind(this);   
     }
-    GetVoiceValue(data) { this.setState({userNum: data}) }
 
     handleLogin = e => {
         e.preventDefault() //페이징 이동 없게

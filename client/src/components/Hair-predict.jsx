@@ -4,35 +4,23 @@ import * as tmImage from '@teachablemachine/image'
 export default function WelcomePage({GetTeachValue}) {
   const [openVal, setOpenVal] = useState(false);
   const [state, setstate] = useState({
-    result1 : "High",
-    result2 : "Middle",
-    result3 : "Low",
-    result4 : "Good",
     iswebcam : false,
   })
-
   // const URL = "https://teachablemachine.withgoogle.com/models/pg97lEWuB/"  //원래
   const URL = "https://teachablemachine.withgoogle.com/models/ukHIXusf5/" //4개 분류
-
-  
   let model;
   let webcam;
   let labelContainer;
   let maxPredictions;
-
   useEffect(() => {
     init()
-    
   }, [])
 
   async function init() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
-    
-
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
-
     const flip = true; 
     webcam = new tmImage.Webcam(500, 500, flip); 
     await webcam.setup();
@@ -53,7 +41,6 @@ export default function WelcomePage({GetTeachValue}) {
   }
 
   async function predict() {
-    
     const prediction = await model.predict(webcam.canvas);
     setstate({
       high : prediction[0].probability.toFixed(2),

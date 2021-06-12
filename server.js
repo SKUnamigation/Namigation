@@ -42,18 +42,6 @@ app.post('/api/result/:userNum', (req, res) => {
 }
 );
 
-app.get('/api/result', (req, res) => {
-	let sql = "SELECT * FROM m_Tcheck WHERE userNum =4566 ";
-	let userNum = req.body.userNum;
-	let params = [userNum]
-	connection.query(sql, params,
-		(err, rows, fields) => {
-			res.send(rows);
-			console.log("!!!!!!")
-			console.log(err)
-			// console.log(rows)
-		})
-});
 
 app.get('/hello', (req, res) => {
 	res.send("안녕하세요 서버가 정상적으로 작동하고 있습니다.");
@@ -68,18 +56,6 @@ app.post('/api/result', (req, res) => {
 		})
 });
 
-app.get('/api/haha/:userNum', (req, res) => {
-	connection.query(
-		"SELECT * FROM m_Tcheck where userNum=" + req.params.userNum,
-		(err, rows, fields) => {
-			try {
-				console.log(req.params.userNum)
-				res.send(rows);
-			} catch (error) {
-				console.log("오류입니다.")
-			}
-		});
-});
 
 app.get('/api/login', (req, res) => {
 	let sql = "SELECT userNum FROM m_Tcheck WHERE userNum = ? ";
@@ -111,30 +87,7 @@ app.post('/api/login', (req, res) => {
 });
 
 
-app.post('/hello/insert', upload.single('image'), (req, res) => {
-
-	console.log(request.body)
-	let sql = "insert into m_Tcheck values (null,?,?,?,?,?,'https://placeimg.com/64/64/summer',NOW())";
-	let userNum = '12345';
-	let high = '12345';
-	let middle = '12345';
-	let low = '12345';
-	let good = '12345';
-	let params = [userNum, high, middle, low, good];
-	connection.query(sql, params,
-		(err, rows, fields) => {
-			res.send(rows);
-			console.log(err)
-			console.log(rows)
-		})
-})
-
-
-
-
-
 app.use('/image', express.static('./upload'));
-// app.post('/api/predict'/*,upload.single('image')*/,(req,res)=> 
 app.post('/api/predict', upload.single('image'), (req, res) => {
 
 	console.log(request.body)
