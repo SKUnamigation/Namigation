@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="탈모 측정 상세 정보"
+            android:textStyle="bold"
+            android:textColor="#7868e6"
+            android:fontFamily="@font/wemakeprice_bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:background="#b8b5ff" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+
+                <com.dinuscxj.progressbar.CircleProgressBar
+                    android:id="@+id/result_graph"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    app:style="solid_line"
+                    app:progress_start_degree="270"
+                    app:progress_start_color="#db3939"
+                    app:progress_end_color="#3841e8"
+                    app:progress_background_color="#e6d5ed"
+                    app:progress_shader="linear"
+                    app:progress_stroke_cap="round"
+                    app:progress_stroke_width="10dp"
+                    app:progress_text_color="#888cdb"
+                    app:progress_text_size="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Dan_grade"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:text="Dagerous Grade"
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="진단 결과"
+                android:textSize="23dp"
+                android:textColor="#7868e6"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"/>
+
+            <View
+                android:layout_width="320dp"
+                android:layout_height="3dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_horizontal"
+                android:background="#7868e6" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center" >
+
+                <TextView
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="진단 결과가 경고로 나왔습니다. 조금씩 주의를 기울일 필요성이 있습니다. 머리를 감더라도 뜨거운 물보단 미지근한 물 혹은 차가운 물로 감으세요."
+                    android:textColor="#321DC1"
+                    android:textSize="15dp" />
+
+                <View
+                    android:layout_width="320dp"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/dotted_line_horizontal" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:text="현재 단계는 탈모가 의심되는 상태이므로 음식물 섭취에도 집중할 필요가 있습니다. 모근의 힘을 길러주는 검은 콩을 많이 드세요."
+                    android:textSize="15dp"
+                    android:textColor="#321DC1"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="10dp" />
+
+
+                <TextView
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:text="예방 방법"
+                    android:textSize="23dp"
+                    android:textColor="#7868e6"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="5dp"/>
+
+                <View
+                    android:layout_width="320dp"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#7868e6" />
+
+                <TextView
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="2dp"
+                    android:text="탈모가 진행되면 두피 쪽으로 열이 많이 발산되므로, 혈액 순환을 원활하게 하여 두피쪽으로 발산되는 열을 체내로 분산 시켜야 합니다."
+                    android:textColor="#321DC1"
+                    android:textSize="15dp" />
+
+                <View
+                    android:layout_width="320dp"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/dotted_line_horizontal" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:text="탈모의 원인인 스트레스는 체내의 호르몬의 불균형을 가져와 신진대사 이상을 초래한다. 따라서, 뇌하수체를 건강하게 함으로써 호르몬의 균형을 맞춰줘야 합니다."
+                    android:textSize="15dp"
+                    android:textColor="#321DC1"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="2dp"
+                    android:paddingBottom="10dp" />
+
+                <View
+                    android:layout_width="320dp"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/dotted_line_horizontal" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:text="모발이 성장하기 위해서는 모유두까지 영양분이 원활하게 공급되도록 모세혈관을 확장시켜 주어야 합니다. 또한, 모발의 원료인 아미노산, 비타민, 무기질 등을 균형있게 공급해주어야 합니다."
+                    android:textSize="15dp"
+                    android:textColor="#321DC1"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="2dp"
+                    android:paddingBottom="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
