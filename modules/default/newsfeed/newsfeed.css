@@ -6,9 +6,11 @@ iframe.newsfeed-fullarticle {
   left: 0;
   border: none;
   z-index: 1;
+  text-color: white;
 }
 
 .region.bottom.bar.newsfeed-fullarticle {
   bottom: inherit;
   top: -90px;
+  text-color: white;
 }

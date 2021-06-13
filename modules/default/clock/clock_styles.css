@@ -21,6 +21,8 @@
   border-radius: 3px;
   content: "";
   display: block;
+  color: white;
+  
 }
 
 .clockHour {
@@ -57,8 +59,10 @@
   left: 50%;
   margin: -38% -1px 0 0; /* numbers must match negative length & thickness */
   padding: 38% 1px 0 0; /* indicator length & thickness */
-  background: #888;
+  /*background: #888;*/
+  background: white;
   transform-origin: 50% 100%;
+  color: white;
 }
 
 .module.clock .sun,
